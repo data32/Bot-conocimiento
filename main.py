@@ -1,7 +1,7 @@
-import os, requests
+import os, requests, asyncio
 from bs4 import BeautifulSoup
 from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+from telegram.ext import Application, MessageHandler, filters, ContextTypes
 
 TOKEN = os.environ["TELEGRAM_TOKEN"]
 
@@ -35,14 +35,4 @@ async def handle(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
         return
     await update.message.reply_text("Extrayendo texto...")
     try:
-        if "reddit.com" in url:
-            text = scrape_reddit(url)
-        else:
-            text = scrape_generic(url)
-        await update.message.reply_text(text)
-    except Exception as e:
-        await update.message.reply_text(f"Error: {e}")
-
-app = ApplicationBuilder().token(TOKEN).build()
-app.add_handler(MessageHandler(filters.TEXT, handle))
-app.run_polling()
+        if
